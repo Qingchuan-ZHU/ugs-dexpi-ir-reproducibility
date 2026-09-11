@@ -1,0 +1,18 @@
+Design a greenfield natural-gas withdrawal and export surface process for an underground gas storage facility developed from a depleted gas reservoir.
+
+Dry pipeline-quality natural gas arrives at the surface battery limit from the withdrawal-well manifold.
+
+Design basis:
+- Feed pressure: 12.0–14.0 MPa
+- Feed temperature: approximately 25 °C
+- Design withdrawal/export capacity: 450,000 standard m3/day
+- Destination: regional natural-gas transmission pipeline
+- Required export pressure at the pipeline battery limit: 6.5–7.5 MPa
+- Gas delivered to the export pipeline shall not exceed 45 °C.
+- The withdrawn gas already satisfies the required pipeline gas-quality and water-dew-point specification at the source battery limit; no additional gas-quality treatment requirement is specified for this case.
+
+Determine a reasonable and feasible surface withdrawal/export process based on these design conditions.
+
+You must make the necessary process-design decisions yourself, including the required major process operations, their sequence, and reasonable intermediate process conditions.
+
+Use the case name "Greenfield Withdrawal Export Case" and Scope = Design for the design conditions represented in the model.

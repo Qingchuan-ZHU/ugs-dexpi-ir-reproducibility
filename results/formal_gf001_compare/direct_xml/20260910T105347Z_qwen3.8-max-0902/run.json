@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "20260910T105347Z",
+  "case_id": "UGS-GF-001",
+  "experiment": "UGS-GF-001 direct XML vs Engineering IR formal comparison",
+  "method": "direct_xml",
+  "provider": "dashscope_openai_compatible",
+  "endpoint_type": "DashScope OpenAI-compatible workspace endpoint; URL intentionally not recorded",
+  "model_config_key": "qwen3.8-max-0902-nonthinking-v1",
+  "model_requested": "qwen3.8-max-0902",
+  "model_returned": "qwen3.8-max-0902",
+  "generation_parameters": {
+    "reasoning_effort": "none",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "repetition_penalty": 1.0,
+    "seed": 1234,
+    "max_completion_tokens": 16384,
+    "n": 1,
+    "stream": false,
+    "preserve_thinking": false
+  },
+  "finish_reason": "stop",
+  "latency_seconds": 168.13069560000076,
+  "model_config_file": "runtime\\model_configs.json",
+  "model_config_file_sha256": "84DD87A3BB7ECC1ACAB0704E69C764E26C710C488331B27C70D173EE51478F71",
+  "system_prompt_file": "runtime\\prompts\\formal_direct_dexpi_v0.1.txt",
+  "system_prompt_file_sha256": "6B8ACD5600576764DC614749AE3C29A4924AFB7D9F0D48F72AF7C216DCA9CB36",
+  "system_prompt_text_sha256": "65D2532738F3BBE4EDED8BE2CACBB93DE72BC42DE8A388DFF5E5F98748AAB955",
+  "requirement_file": "runtime\\greenfield_requirement_001_formal.txt",
+  "requirement_file_sha256": "DC2A93CBCDEE67DAD5F87000E4EDB55F135F1E94BCFE5DA0B943F8A0FF25BA9E",
+  "requirement_text_sha256": "DC2A93CBCDEE67DAD5F87000E4EDB55F135F1E94BCFE5DA0B943F8A0FF25BA9E",
+  "user_message_text_sha256": "3FEAFC7FAE94E6B8F1DB0A26D59E68E22F47FB7D81E76B3595D15B48AD7B859F",
+  "generated_file": "results\\formal_gf001_compare\\direct_xml\\20260910T105347Z_qwen3.8-max-0902\\generated.xml",
+  "generated_sha256": "4BE906EFA1FFF48B92B192B2308655039CD992C1461E93496116ED79F9EC0427",
+  "git_commit_hash": "3f646644e6e9d0d41bec3b27843f3e1b41fd9f15",
+  "python_version": "3.10.11",
+  "openai_sdk_version": "2.54.0",
+  "standards": {
+    "DEXPI_XML_Schema_RC_1.xsd": "0BD6568B7C52FD59AC4EF6D8547AB2B2AA890C009A3A1BFBC5D7CC18C53B36E6",
+    "Core.xml": "D73D944D47A951FDB10FE796E7433936FA6D78C42DC686BD740918F5D21E6ABF",
+    "Process.xml": "64A5AF8B2987EDC0186551CAA08FF9DA63F2B8EEF06663E322BE416B2981F4DA"
+  },
+  "usage": {
+    "prompt_tokens": 121839,
+    "completion_tokens": 10573,
+    "reasoning_tokens": null,
+    "cached_tokens": 120832,
+    "total_tokens": 132412
+  }
+}

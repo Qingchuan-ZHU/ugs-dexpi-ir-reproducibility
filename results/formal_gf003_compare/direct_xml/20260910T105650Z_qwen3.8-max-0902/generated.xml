@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model name="GreenfieldGasInjectionProcess" uri="https://example.org/models/GreenfieldGasInjectionProcess.xml">
+  <Import prefix="Core" source="https://data.dexpi.org/models/2.0.0/Core.xml"/>
+  <Import prefix="Process" source="https://data.dexpi.org/models/2.0.0/Process.xml"/>
+  <Object type="/Process.ProcessModel" id="PM_Greenfield">
+    <Data property="Case">
+      <String>Greenfield Dual-Pressure Injection Case</String>
+    </Data>
+    <Components property="MaterialComponents">
+      <Object type="/Process.PureMaterialComponent" id="MC_Methane">
+        <Data property="Identifier">
+          <String>METHANE</String>
+        </Data>
+        <Data property="Label">
+          <String>Methane</String>
+        </Data>
+        <Data property="ChEBI_identifier">
+          <String>CHEBI:16183</String>
+        </Data>
+      </Object>
+    </Components>
+    <Components property="ListsOfMaterialComponents">
+      <Object type="/Process.ListOfMaterialComponents" id="LOMC_NatGas">
+        <Data property="Identifier">
+          <String>LOMC_NG</String>
+        </Data>
+        <References property="Component" objects="#MC_Methane"/>
+      </Object>
+    </Components>
+    <Components property="MaterialTemplates">
+      <Object type="/Process.MaterialTemplate" id="MT_NatGas">
+        <Data property="Identifier">
+          <String>MT_NG</String>
+        </Data>
+        <Data property="Label">
+          <String>Pipeline Natural Gas</String>
+        </Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Pipeline-quality natural gas template for injection facility.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Data property="NumberOfMaterialComponents">
+          <Integer>1</Integer>
+        </Data>
+        <Data property="NumberOfPhases">
+          <Integer>1</Integer>
+        </Data>
+        <References property="ListOfComponents" objects="#LOMC_NatGas"/>
+      </Object>
+    </Components>
+    <Components property="Compositions">
+      <Object type="/Process.Composition" id="Comp_NatGas">
+        <Data property="Display">
+          <String>Fraction</String>
+        </Data>
+        <Components property="MoleFractiona">
+          <Object type="Core/QualifiedValue" id="QV_MoleFrac">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantityVector">
+                <Data property="Unit"><String>Percent</String></Data>
+                <Data property="Values"><Double>100.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+    <Components property="MaterialStateTypes">
+      <Object type="/Process.MaterialStateType" id="MST_Vapour">
+        <Data property="Identifier">
+          <String>MST_VAP</String>
+        </Data>
+        <Data property="Label">
+          <String>Vapour Phase</String>
+        </Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <Data property="Language"><String>en</String></Data>
+              <Data property="Value"><String>Single phase vapour state type.</String></Data>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <References property="Composition" objects="#Comp_NatGas"/>
+      </Object>
+    </Components>
+    <Components property="MaterialStates">
+      <Object type="/Process.MaterialState" id="MS_Feed">
+        <Data property="Identifier"><String>MS_FEED</String></Data>
+        <Data property="Label"><String>Feed State</String></Data>
+        <Data property="Description"><String>Feed gas conditions at battery limit</String></Data>
+        <References property="Phase" objects="#MST_Vapour"/>
+        <References property="State" objects="#MST_Vapour"/>
+      </Object>
+      <Object type="/Process.MaterialState" id="MS_CompA_Out">
+        <Data property="Identifier"><String>MS_COMPA_OUT</String></Data>
+        <Data property="Label"><String>Comp A Discharge State</String></Data>
+        <Data property="Description"><String>Discharge state from Compressor Train A</String></Data>
+        <References property="Phase" objects="#MST_Vapour"/>
+        <References property="State" objects="#MST_Vapour"/>
+      </Object>
+      <Object type="/Process.MaterialState" id="MS_CoolA_Out">
+        <Data property="Identifier"><String>MS_COOLA_OUT</String></Data>
+        <Data property="Label"><String>Cooler A Discharge State</String></Data>
+        <Data property="Description"><String>Discharge state from Aftercooler A</String></Data>
+        <References property="Phase" objects="#MST_Vapour"/>
+        <References property="State" objects="#MST_Vapour"/>
+      </Object>
+      <Object type="/Process.MaterialState" id="MS_CompB_Out">
+        <Data property="Identifier"><String>MS_COMPB_OUT</String></Data>
+        <Data property="Label"><String>Comp B Discharge State</String></Data>
+        <Data property="Description"><String>Discharge state from Compressor Train B</String></Data>
+        <References property="Phase" objects="#MST_Vapour"/>
+        <References property="State" objects="#MST_Vapour"/>
+      </Object>
+      <Object type="/Process.MaterialState" id="MS_CoolB_Out">
+        <Data property="Identifier"><String>MS_COOLB_OUT</String></Data>
+        <Data property="Label"><String>Cooler B Discharge State</String></Data>
+        <Data property="Description"><String>Discharge state from Aftercooler B</String></Data>
+        <References property="Phase" objects="#MST_Vapour"/>
+        <References property="State" objects="#MST_Vapour"/>
+      </Object>
+    </Components>
+    <Components property="ProcessSteps">
+      <!-- Feed Source -->
+      <Object type="/Process.Source" id="PS_FeedSource">
+        <Data property="Identifier"><String>SRC_01</String></Data>
+        <Data property="Label"><String>Regional Transmission Network</String></Data>
+        <Data property="HierarchyLevel"><String>Process</String></Data>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_Src_Out">
+            <Data property="Identifier"><String>PORT_SRC_OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Main Splitter -->
+      <Object type="/Process.SplittingMaterial" id="PS_MainSplitter">
+        <Data property="Identifier"><String>SPL_01</String></Data>
+        <Data property="Label"><String>Feed Header Splitter</String></Data>
+        <Data property="HierarchyLevel"><String>UnitOperation</String></Data>
+        <Components property="Flow">
+          <Object type="Core/QualifiedValue" id="QV_Split_Flow">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>900000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_Spl_In">
+            <Data property="Identifier"><String>PORT_SPL_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_Spl_OutA">
+            <Data property="Identifier"><String>PORT_SPL_OUTA</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_Spl_OutB">
+            <Data property="Identifier"><String>PORT_SPL_OUTB</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- TRAIN A: Compression to 20 MPa -->
+      <Object type="/Process.Compressing" id="PS_CompA">
+        <Data property="Identifier"><String>COMP_A_01</String></Data>
+        <Data property="Label"><String>Train A Compressor</String></Data>
+        <Data property="HierarchyLevel"><String>UnitOperation</String></Data>
+        <Data property="Method"><String>CentrifugalMotion</String></Data>
+        <Components property="CompressionRatio">
+          <Object type="Core/QualifiedValue" id="QV_CompA_Ratio">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value"><Double>2.35</Double></Data>
+          </Object>
+        </Components>
+        <Components property="NumberOfStages">
+          <Object type="Core/QualifiedValue" id="QV_CompA_Stages">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value"><Integer>2</Integer></Data>
+          </Object>
+        </Components>
+        <Components property="PolytropicEfficiency">
+          <Object type="Core/QualifiedValue" id="QV_CompA_Eff">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Percent</String></Data>
+                <Data property="Value"><Double>78.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_CompA_In">
+            <Data property="Identifier"><String>PORT_COMPA_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_CompA_Out">
+            <Data property="Identifier"><String>PORT_COMPA_OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- TRAIN A: Aftercooler (Max 55 C) -->
+      <Object type="/Process.Cooling" id="PS_CoolerA">
+        <Data property="Identifier"><String>COOL_A_01</String></Data>
+        <Data property="Label"><String>Train A Aftercooler</String></Data>
+        <Data property="HierarchyLevel"><String>UnitOperation</String></Data>
+        <Data property="Method"><String>Tubular</String></Data>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_CoolA_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>50.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_CoolA_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>20.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_CoolA_In">
+            <Data property="Identifier"><String>PORT_COOLA_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_CoolA_Out">
+            <Data property="Identifier"><String>PORT_COOLA_OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- TRAIN B: Compression to 30 MPa -->
+      <Object type="/Process.Compressing" id="PS_CompB">
+        <Data property="Identifier"><String>COMP_B_01</String></Data>
+        <Data property="Label"><String>Train B Compressor</String></Data>
+        <Data property="HierarchyLevel"><String>UnitOperation</String></Data>
+        <Data property="Method"><String>CentrifugalMotion</String></Data>
+        <Components property="CompressionRatio">
+          <Object type="Core/QualifiedValue" id="QV_CompB_Ratio">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value"><Double>3.53</Double></Data>
+          </Object>
+        </Components>
+        <Components property="NumberOfStages">
+          <Object type="Core/QualifiedValue" id="QV_CompB_Stages">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value"><Integer>3</Integer></Data>
+          </Object>
+        </Components>
+        <Components property="PolytropicEfficiency">
+          <Object type="Core/QualifiedValue" id="QV_CompB_Eff">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Percent</String></Data>
+                <Data property="Value"><Double>78.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_CompB_In">
+            <Data property="Identifier"><String>PORT_COMPB_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_CompB_Out">
+            <Data property="Identifier"><String>PORT_COMPB_OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- TRAIN B: Aftercooler (Max 55 C) -->
+      <Object type="/Process.Cooling" id="PS_CoolerB">
+        <Data property="Identifier"><String>COOL_B_01</String></Data>
+        <Data property="Label"><String>Train B Aftercooler</String></Data>
+        <Data property="HierarchyLevel"><String>UnitOperation</String></Data>
+        <Data property="Method"><String>Tubular</String></Data>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_CoolB_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>50.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_CoolB_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>30.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_CoolB_In">
+            <Data property="Identifier"><String>PORT_COOLB_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+          <Object type="/Process.MaterialPort" id="Port_CoolB_Out">
+            <Data property="Identifier"><String>PORT_COOLB_OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Sinks (Well Groups) -->
+      <Object type="/Process.Sink" id="PS_WellGroupA">
+        <Data property="Identifier"><String>SNK_WGA</String></Data>
+        <Data property="Label"><String>Injection Well Group A</String></Data>
+        <Data property="HierarchyLevel"><String>Process</String></Data>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_WGA_In">
+            <Data property="Identifier"><String>PORT_WGA_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+      <Object type="/Process.Sink" id="PS_WellGroupB">
+        <Data property="Identifier"><String>SNK_WGB</String></Data>
+        <Data property="Label"><String>Injection Well Group B</String></Data>
+        <Data property="HierarchyLevel"><String>Process</String></Data>
+        <Components property="Ports">
+          <Object type="/Process.MaterialPort" id="Port_WGB_In">
+            <Data property="Identifier"><String>PORT_WGB_IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+            <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+
+    <Components property="ProcessConnections">
+      <!-- Stream 1: Source to Splitter -->
+      <Object type="/Process.Stream" id="STR_01">
+        <Data property="Identifier"><String>STR_01</String></Data>
+        <Data property="Label"><String>Feed Gas Line</String></Data>
+        <References property="Source" objects="#Port_Src_Out"/>
+        <References property="Target" objects="#Port_Spl_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <References property="MaterialStateReference" objects="#MS_Feed"/>
+        <Components property="MassFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str01_Mass">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>KilogramPerHour</String></Data>
+                <Data property="Value"><Double>26800.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str01_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>900000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str01_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>8.5</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str01_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>15.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 2: Splitter to Comp A -->
+      <Object type="/Process.Stream" id="STR_02A">
+        <Data property="Identifier"><String>STR_02A</String></Data>
+        <Data property="Label"><String>Train A Feed</String></Data>
+        <References property="Source" objects="#Port_Spl_OutA"/>
+        <References property="Target" objects="#Port_CompA_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str02A_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>300000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str02A_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>8.5</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str02A_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>15.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 3: Comp A to Cooler A -->
+      <Object type="/Process.Stream" id="STR_03A">
+        <Data property="Identifier"><String>STR_03A</String></Data>
+        <Data property="Label"><String>Train A Hot Discharge</String></Data>
+        <References property="Source" objects="#Port_CompA_Out"/>
+        <References property="Target" objects="#Port_CoolA_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <References property="MaterialStateReference" objects="#MS_CompA_Out"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str03A_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>300000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str03A_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>20.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str03A_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>145.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 4: Cooler A to Well Group A -->
+      <Object type="/Process.Stream" id="STR_04A">
+        <Data property="Identifier"><String>STR_04A</String></Data>
+        <Data property="Label"><String>Train A Injection Line</String></Data>
+        <References property="Source" objects="#Port_CoolA_Out"/>
+        <References property="Target" objects="#Port_WGA_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <References property="MaterialStateReference" objects="#MS_CoolA_Out"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str04A_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>300000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str04A_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>20.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str04A_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>50.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 5: Splitter to Comp B -->
+      <Object type="/Process.Stream" id="STR_02B">
+        <Data property="Identifier"><String>STR_02B</String></Data>
+        <Data property="Label"><String>Train B Feed</String></Data>
+        <References property="Source" objects="#Port_Spl_OutB"/>
+        <References property="Target" objects="#Port_CompB_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str02B_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>600000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str02B_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>8.5</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str02B_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>15.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 6: Comp B to Cooler B -->
+      <Object type="/Process.Stream" id="STR_03B">
+        <Data property="Identifier"><String>STR_03B</String></Data>
+        <Data property="Label"><String>Train B Hot Discharge</String></Data>
+        <References property="Source" objects="#Port_CompB_Out"/>
+        <References property="Target" objects="#Port_CoolB_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <References property="MaterialStateReference" objects="#MS_CompB_Out"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str03B_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>600000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str03B_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>30.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str03B_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>175.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <!-- Stream 7: Cooler B to Well Group B -->
+      <Object type="/Process.Stream" id="STR_04B">
+        <Data property="Identifier"><String>STR_04B</String></Data>
+        <Data property="Label"><String>Train B Injection Line</String></Data>
+        <References property="Source" objects="#Port_CoolB_Out"/>
+        <References property="Target" objects="#Port_WGB_In"/>
+        <References property="MaterialTemplateReference" objects="#MT_NatGas"/>
+        <References property="MaterialStateReference" objects="#MS_CoolB_Out"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_Str04B_Vol">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>600000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_Str04B_Press">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>30.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_Str04B_Temp">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="Case"><String>Greenfield Dual-Pressure Injection Case</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>50.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+  </Object>
+</Model>

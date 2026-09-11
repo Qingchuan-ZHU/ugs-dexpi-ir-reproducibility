@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model name="GreenfieldWithdrawalExportProcess" uri="https://example.org/dexpi/GreenfieldWithdrawalExportProcess.xml">
+  <Import prefix="Core" source="https://data.dexpi.org/models/2.0.0/Core.xml"/>
+  <Import prefix="Process" source="https://data.dexpi.org/models/2.0.0/Process.xml"/>
+  <Import prefix="MetaData" source="https://data.dexpi.org/models/2.0.0/MetaData.xml"/>
+
+  <Object type="Process/ProcessModel" name="GreenfieldWithdrawalExportCase">
+    <Components property="ProcessSteps">
+      <Object type="Process/Source" id="SRC_01" name="WellManifoldSource">
+        <Data property="Identifier"><String>SRC-01</String></Data>
+        <Data property="Label"><String>UGS Well Manifold BL</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Battery limit source for dry pipeline-quality natural gas from the underground gas storage withdrawal well manifold.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_SRC_OUT" name="SourceOutlet">
+            <Data property="Identifier"><String>P-SRC-OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/RegulatingFlow" id="V_01" name="InletESDV">
+        <Data property="Identifier"><String>V-01</String></Data>
+        <Data property="Label"><String>Inlet ESDV</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Emergency shutdown valve at the surface facility inlet to isolate the withdrawal system.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="PressureDifference">
+          <Object type="Core/QualifiedValue" id="QV_V01_DP" name="V01DP">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>0.05 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>0.05</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_V01_IN" name="Inlet">
+            <Data property="Identifier"><String>P-V01-IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+          </Object>
+          <Object type="Process/MaterialPort" id="P_V01_OUT" name="Outlet">
+            <Data property="Identifier"><String>P-V01-OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Filtering" id="F_01" name="InletSeparatorFilter">
+        <Data property="Identifier"><String>F-01</String></Data>
+        <Data property="Label"><String>Inlet Filter Separator</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Filter separator to remove any entrained particulates or pipe scale from the withdrawn gas prior to pressure reduction.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="PressureDifference">
+          <Object type="Core/QualifiedValue" id="QV_F01_DP" name="F01DP">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>0.1 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>0.1</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="ParticleSize">
+          <Object type="Core/QualifiedValue" id="QV_F01_PS" name="F01PS">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>10 µm</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Micrometre</String></Data>
+                <Data property="Value"><Double>10.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_F01_IN" name="Inlet">
+            <Data property="Identifier"><String>P-F01-IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+          </Object>
+          <Object type="Process/MaterialPort" id="P_F01_OUT" name="Outlet">
+            <Data property="Identifier"><String>P-F01-OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/RegulatingFlow" id="PCV_01" name="PressureControlValve">
+        <Data property="Identifier"><String>PCV-01</String></Data>
+        <Data property="Label"><String>Export Pressure Control Valve</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Pressure reducing and regulating control valve to step down the withdrawal pressure (12-14 MPa) to the required export pipeline pressure (6.5-7.5 MPa).</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="PressureDifference">
+          <Object type="Core/QualifiedValue" id="QV_PCV01_DP" name="PCV01DP">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>6.0 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>6.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_PCV01_IN" name="Inlet">
+            <Data property="Identifier"><String>P-PCV01-IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+          </Object>
+          <Object type="Process/MaterialPort" id="P_PCV01_OUT" name="Outlet">
+            <Data property="Identifier"><String>P-PCV01-OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Cooling" id="E_01" name="ExportGasCooler">
+        <Data property="Identifier"><String>E-01</String></Data>
+        <Data property="Label"><String>Export Gas Cooler</String></Data>
+        <Data property="Method"><String>Tubular</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Air-cooled heat exchanger to cool the gas after isenthalpic pressure reduction, ensuring the export temperature does not exceed 45 °C.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="Duty">
+          <Object type="Core/QualifiedValue" id="QV_E01_DUTY" name="E01Duty">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>1500 kW</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Kilowatt</String></Data>
+                <Data property="Value"><Double>1500.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_E01_IN" name="HotInlet">
+            <Data property="Identifier"><String>P-E01-IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+          </Object>
+          <Object type="Process/MaterialPort" id="P_E01_OUT" name="CooledOutlet">
+            <Data property="Identifier"><String>P-E01-OUT</String></Data>
+            <Data property="NominalDirection"><String>Outlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/MeasuringProcessVariable" id="FT_01" name="ExportFlowMeter">
+        <Data property="Identifier"><String>FT-01</String></Data>
+        <Data property="Label"><String>Export Flow Meter</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Custody transfer flow metering skid for measuring the export gas volume delivered to the regional transmission pipeline.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="InputValue">
+          <Object type="Core/QualifiedValue" id="QV_FT01_IN" name="FT01In">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>450000 Sm3/d</String></Data>
+            <Data property="Value"><Double>450000.0</Double></Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Sink" id="SNK_01" name="ExportPipelineSink">
+        <Data property="Identifier"><String>SNK-01</String></Data>
+        <Data property="Label"><String>Export Pipeline BL</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Battery limit sink representing the regional natural-gas transmission pipeline connection point.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Components property="Ports">
+          <Object type="Process/MaterialPort" id="P_SNK_IN" name="SinkInlet">
+            <Data property="Identifier"><String>P-SNK-IN</String></Data>
+            <Data property="NominalDirection"><String>Inlet</String></Data>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+
+    <Components property="ProcessConnections">
+      <Object type="Process/Stream" id="STR_01" name="FeedStream">
+        <Data property="Identifier"><String>STR-01</String></Data>
+        <Data property="Label"><String>Raw Withdrawal Gas</String></Data>
+        <References property="Source" objects="#P_SRC_OUT"/>
+        <References property="Target" objects="#P_V01_IN"/>
+        <Components property="MassFlow">
+          <Object type="Core/QualifiedValue" id="QV_STR01_MF" name="Str01MF">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>13500 kg/h</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>KilogramPerHour</String></Data>
+                <Data property="Value"><Double>13500.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_STR01_P" name="Str01P">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>13.0 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>13.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_STR01_T" name="Str01T">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>25 °C</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>25.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Stream" id="STR_02" name="FilteredGasStream">
+        <Data property="Identifier"><String>STR-02</String></Data>
+        <Data property="Label"><String>Filtered Gas</String></Data>
+        <References property="Source" objects="#P_V01_OUT"/>
+        <References property="Target" objects="#P_F01_IN"/>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_STR02_P" name="Str02P">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>12.95 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>12.95</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_STR02_T" name="Str02T">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>25 °C</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>25.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Stream" id="STR_03" name="PreLetdownStream">
+        <Data property="Identifier"><String>STR-03</String></Data>
+        <Data property="Label"><String>To PCV</String></Data>
+        <References property="Source" objects="#P_F01_OUT"/>
+        <References property="Target" objects="#P_PCV01_IN"/>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_STR03_P" name="Str03P">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>12.85 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>12.85</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_STR03_T" name="Str03T">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>25 °C</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>25.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Stream" id="STR_04" name="LetdownGasStream">
+        <Data property="Identifier"><String>STR-04</String></Data>
+        <Data property="Label"><String>Letdown Gas</String></Data>
+        <References property="Source" objects="#P_PCV01_OUT"/>
+        <References property="Target" objects="#P_E01_IN"/>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_STR04_P" name="Str04P">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>7.0 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>7.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_STR04_T" name="Str04T">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>48 °C</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>48.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+
+      <Object type="Process/Stream" id="STR_05" name="ExportStream">
+        <Data property="Identifier"><String>STR-05</String></Data>
+        <Data property="Label"><String>Export Gas</String></Data>
+        <References property="Source" objects="#P_E01_OUT"/>
+        <References property="Target" objects="#P_SNK_IN"/>
+        <Components property="VolumeFlow">
+          <Object type="Core/QualifiedValue" id="QV_STR05_VF" name="Str05VF">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>450000 m³/d</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>MetreCubedPerDay</String></Data>
+                <Data property="Value"><Double>450000.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Pressure">
+          <Object type="Core/QualifiedValue" id="QV_STR05_P" name="Str05P">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>7.0 MPa</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>Megapascal</String></Data>
+                <Data property="Value"><Double>7.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+        <Components property="Temperature">
+          <Object type="Core/QualifiedValue" id="QV_STR05_T" name="Str05T">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>35 °C</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantity">
+                <Data property="Unit"><String>DegreeCelsius</String></Data>
+                <Data property="Value"><Double>35.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+
+    <Components property="MaterialTemplates">
+      <Object type="Process/MaterialTemplate" id="MT_NG" name="NaturalGasTemplate">
+        <Data property="Identifier"><String>MT-NG</String></Data>
+        <Data property="Label"><String>Pipeline Natural Gas</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Dry pipeline-quality natural gas from depleted reservoir UGS.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <Data property="NumberOfMaterialComponents"><Integer>1</Integer></Data>
+        <Data property="NumberOfPhases"><Integer>1</Integer></Data>
+        <Data property="PhaseLabel"><String>Vapor</String></Data>
+        <References property="ListOfComponents" objects="#LOMC_01"/>
+      </Object>
+    </Components>
+
+    <Components property="ListsOfMaterialComponents">
+      <Object type="Process/ListOfMaterialComponents" id="LOMC_01" name="NaturalGasComponents">
+        <Data property="Identifier"><String>LOMC-01</String></Data>
+        <References property="Component" objects="#MC_CH4"/>
+      </Object>
+    </Components>
+
+    <Components property="MaterialComponents">
+      <Object type="Process/PureMaterialComponent" id="MC_CH4" name="Methane">
+        <Data property="Identifier"><String>MC-CH4</String></Data>
+        <Data property="Label"><String>Methane</String></Data>
+        <Data property="IUPAC_identifier"><String>methane</String></Data>
+        <Data property="ChEBI_identifier"><String>CHEBI:16183</String></Data>
+      </Object>
+    </Components>
+
+    <Components property="Compositions">
+      <Object type="Process/Composition" id="COMP_NG" name="NaturalGasComposition">
+        <Data property="Display"><String>Fraction</String></Data>
+        <Components property="MoleFractiona">
+          <Object type="Core/QualifiedValue" id="QV_COMP_MF" name="MoleFractions">
+            <Data property="Scope"><String>Design</String></Data>
+            <Data property="DisplayText"><String>~1.0 Methane</String></Data>
+            <Data property="Value">
+              <AggregatedDataValue type="Core/PhysicalQuantities.PhysicalQuantityVector">
+                <Data property="Unit"><String>Percent</String></Data>
+                <Data property="Values"><Double>100.0</Double></Data>
+              </AggregatedDataValue>
+            </Data>
+          </Object>
+        </Components>
+      </Object>
+    </Components>
+
+    <Components property="MaterialStateTypes">
+      <Object type="Process/MaterialStateType" id="MST_NG" name="NaturalGasStateType">
+        <Data property="Identifier"><String>MST-NG</String></Data>
+        <Data property="Label"><String>Natural Gas Vapor</String></Data>
+        <Data property="Description">
+          <AggregatedDataValue type="Core/DataTypes.MultiLanguageString">
+            <Data property="SingleLanguageStrings">
+              <AggregatedDataValue type="Core/DataTypes.SingleLanguageString">
+                <Data property="Language"><String>en</String></Data>
+                <Data property="Value"><String>Single phase vapor state of the pipeline quality natural gas.</String></Data>
+              </AggregatedDataValue>
+            </Data>
+          </AggregatedDataValue>
+        </Data>
+        <References property="Composition" objects="#COMP_NG"/>
+      </Object>
+    </Components>
+
+    <Components property="MaterialStates">
+      <Object type="Process/MaterialState" id="MS_NG" name="NaturalGasState">
+        <Data property="Identifier"><String>MS-NG</String></Data>
+        <Data property="Label"><String>NG State</String></Data>
+        <Data property="Description"><String>Total material state for pipeline natural gas.</String></Data>
+        <References property="State" objects="#MST_NG"/>
+        <References property="Phase" objects="#MST_NG"/>
+      </Object>
+    </Components>
+  </Object>
+</Model>

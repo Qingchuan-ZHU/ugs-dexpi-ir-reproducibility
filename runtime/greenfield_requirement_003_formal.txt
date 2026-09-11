@@ -1,0 +1,19 @@
+Design a greenfield natural-gas injection surface process for an underground gas storage facility with two injection-well groups operating at different pressure levels.
+
+Pipeline-quality natural gas is supplied from a regional high-pressure transmission network.
+
+Design basis:
+- Feed pressure: 8.0–9.0 MPa
+- Feed temperature: approximately 15 °C
+- Total design injection capacity: 900,000 standard m3/day
+- Injection Well Group A requires 300,000 standard m3/day at a design injection pressure of 20 MPa.
+- Injection Well Group B requires 600,000 standard m3/day at a design injection pressure of 30 MPa.
+- Gas delivered to either injection-well group shall not exceed 55 °C.
+- The surface system shall be capable of supplying both well groups simultaneously at their stated design flowrates and pressures.
+- This is a greenfield surface design; no existing compression or cooling equipment is prescribed.
+
+Determine a reasonable and feasible surface injection process based on these design conditions.
+
+You must make the necessary process-design decisions yourself, including the required major process operations, the branching arrangement, their sequence, and reasonable intermediate process conditions.
+
+Use the case name "Greenfield Dual-Pressure Injection Case" and Scope = Design for the design conditions represented in the model.

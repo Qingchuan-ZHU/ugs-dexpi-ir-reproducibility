@@ -1,0 +1,17 @@
+Design a greenfield natural-gas injection surface process for an underground gas storage facility developed from a depleted gas reservoir in East China.
+
+Pipeline-quality natural gas is supplied from a regional high-pressure transmission network.
+
+Design basis:
+- Feed pressure: 8.0–10.0 MPa
+- Feed temperature: approximately 2 °C
+- Design injection capacity: 700,000 standard m3/day
+- Destination: underground gas storage injection wells
+- The injection system shall be capable of delivering gas at an injection pressure of up to 35 MPa.
+- Gas delivered to the injection wells shall not exceed 60 °C.
+
+Determine a reasonable and feasible surface injection process based on these design conditions.
+
+You must make the necessary process-design decisions yourself, including the required major process operations, their sequence, and reasonable intermediate process conditions.
+
+Use the case name "Greenfield Injection Design Case" and Scope = Design for the design conditions represented in the model.

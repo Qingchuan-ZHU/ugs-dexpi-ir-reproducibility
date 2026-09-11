@@ -1,0 +1,11 @@
+{
+  "xml_parseable": true,
+  "xsd_valid": true,
+  "error_count": 0,
+  "errors": [],
+  "xml_file": "results\\formal_gf001_compare\\direct_xml\\20260910T105347Z_qwen3.8-max-0902\\generated.xml",
+  "xsd_file": "standards\\DEXPI_2.0.0\\DEXPI_XML_Schema_RC_1.xsd",
+  "xml_sha256": "4BE906EFA1FFF48B92B192B2308655039CD992C1461E93496116ED79F9EC0427",
+  "xsd_sha256": "0BD6568B7C52FD59AC4EF6D8547AB2B2AA890C009A3A1BFBC5D7CC18C53B36E6",
+  "validator_error_log": []
+}

@@ -1,0 +1,16 @@
+{
+  "qwen3.8-max-0902-nonthinking-v1": {
+    "provider": "dashscope_openai_compatible",
+    "model": "qwen3.8-max-0902",
+    "reasoning_effort": "none",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "repetition_penalty": 1.0,
+    "seed": 1234,
+    "max_completion_tokens": 16384,
+    "n": 1,
+    "preserve_thinking": false,
+    "parameter_basis": "Explicit Qwen3.8 non-thinking documented defaults for temperature/top_p/top_k/repetition_penalty/seed; project-wide fixed output cap for formal comparison."
+  }
+}

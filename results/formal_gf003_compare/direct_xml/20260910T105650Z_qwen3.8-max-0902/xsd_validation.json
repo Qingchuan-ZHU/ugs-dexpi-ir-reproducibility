@@ -1,0 +1,31 @@
+{
+  "xml_parseable": true,
+  "xsd_valid": false,
+  "error_count": 1,
+  "errors": [
+    {
+      "line": 87,
+      "column": 0,
+      "message": "Element 'Data': This element is not expected. Expected is one of ( AggregatedDataValue, DataReference, Boolean, DateTime, Double, Integer, String, Undefined )."
+    }
+  ],
+  "xml_file": "results\\formal_gf003_compare\\direct_xml\\20260910T105650Z_qwen3.8-max-0902\\generated.xml",
+  "xsd_file": "standards\\DEXPI_2.0.0\\DEXPI_XML_Schema_RC_1.xsd",
+  "xml_sha256": "5D59C1BC6CFD019F3AAB17F52D50F987BB8E2D4726FA13FD0B7BAE331FDE16C0",
+  "xsd_sha256": "0BD6568B7C52FD59AC4EF6D8547AB2B2AA890C009A3A1BFBC5D7CC18C53B36E6",
+  "validator_error_log": [
+    {
+      "domain": 17,
+      "domain_name": "SCHEMASV",
+      "type": 1871,
+      "type_name": "SCHEMAV_ELEMENT_CONTENT",
+      "level": 2,
+      "level_name": "ERROR",
+      "line": 87,
+      "column": 0,
+      "message": "Element 'Data': This element is not expected. Expected is one of ( AggregatedDataValue, DataReference, Boolean, DateTime, Double, Integer, String, Undefined ).",
+      "filename": "results/formal_gf003_compare/direct_xml/20260910T105650Z_qwen3.8-max-0902/generated.xml",
+      "path": "/Model/Object/Components[5]/Object/Data[3]/AggregatedDataValue/Data/Data[1]"
+    }
+  ]
+}
